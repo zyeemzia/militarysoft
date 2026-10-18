@@ -16,6 +16,8 @@
     const c = $('#contours'); if (!c) return;
     const x = c.getContext('2d');
     const draw = () => {
+      const cs = getComputedStyle(document.documentElement);
+      const cMinor = cs.getPropertyValue('--contour').trim(), cMajor = cs.getPropertyValue('--contour-major').trim(), cGrid = cs.getPropertyValue('--grid').trim();
       const dpr = Math.min(2, devicePixelRatio || 1), W = innerWidth, H = innerHeight;
       c.width = W * dpr; c.height = H * dpr; x.setTransform(dpr, 0, 0, dpr, 0, 0); x.clearRect(0, 0, W, H);
       // smooth height field from a few gaussian hills
@@ -25,7 +27,7 @@
       for (let j = 0; j < rows; j++) { g[j] = []; for (let i = 0; i < cols; i++) g[j][i] = f(i * step, j * step); }
       x.lineWidth = 1;
       for (let k = 1; k <= 14; k++) {
-        const lvl = k * .085; x.strokeStyle = k % 5 === 0 ? 'rgba(217,179,91,.16)' : 'rgba(143,174,126,.075)'; x.beginPath();
+        const lvl = k * .085; x.strokeStyle = k % 5 === 0 ? cMajor : cMinor; x.beginPath();
         for (let j = 0; j < rows - 1; j++) for (let i = 0; i < cols - 1; i++) {
           const a = g[j][i], b = g[j][i + 1], cc = g[j + 1][i + 1], d = g[j + 1][i];
           const idx = (a > lvl) | ((b > lvl) << 1) | ((cc > lvl) << 2) | ((d > lvl) << 3);
@@ -38,10 +40,11 @@
         x.stroke();
       }
       // grid
-      x.strokeStyle = 'rgba(255,255,255,.025)';
+      x.strokeStyle = cGrid;
       x.beginPath(); for (let i = 0; i < W; i += 120) { x.moveTo(i, 0); x.lineTo(i, H); } for (let j = 0; j < H; j += 120) { x.moveTo(0, j); x.lineTo(W, j); } x.stroke();
     };
     draw(); let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(draw, 200); });
+    MS.redrawContours = draw;
   }
 
   /* ---------- lightbox ---------- */
@@ -80,7 +83,7 @@
         </div>
         <div class="sys-media">
           ${s.shots.length ? `
-          <div class="window"><div class="window-bar"><i></i><i></i><i></i><span>${esc(s.window || s.name)}</span></div>
+          <div class="window"><div class="window-bar"><i></i><i></i><i></i><span>${esc(s.window || s.name)}</span><em class="bar-seal" title="Signed build"><span>SIGNED BUILD</span><img src="img/brand/signature-gold-sm.webp" alt="" loading="lazy"></em></div>
             <button class="window-shot" type="button" data-sys="${n}" data-i="0" aria-label="Enlarge screenshot"><img src="${img('systems', s.shots[0][0])}" alt="${esc(s.shots[0][1])}" loading="lazy"></button></div>
           <div class="caption" id="cap-${n}">${esc(s.shots[0][1])}</div>
           ${s.shots.length > 1 ? `<div class="thumbs" role="group" aria-label="Screenshots">${s.shots.map((sh, i) => `<button type="button" data-thumb="${n}:${i}" aria-pressed="${i === 0}" aria-label="${esc(sh[1])}"><img src="${img('systems', sh[0])}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}`
@@ -172,6 +175,22 @@
     document.querySelectorAll('.reveal').forEach(el => { if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('pending'); io.observe(el); } });
   }
 
-  contours(); renderStats(); renderSystems(); renderApps(); renderTimeline(); reveal();
+  /* ---------- DAY OPS / NIGHT OPS ---------- */
+  function themeSwitch() {
+    const btn = $('#opsSwitch'); if (!btn) return;
+    const mq = matchMedia('(prefers-color-scheme: light)');
+    const current = () => document.documentElement.getAttribute('data-theme') || (mq.matches ? 'light' : 'dark');
+    const sync = () => { const m = current(); btn.dataset.mode = m; btn.setAttribute('aria-pressed', m === 'light'); btn.title = m === 'light' ? 'Day ops — switch to night' : 'Night ops — switch to day'; if (MS.redrawContours) MS.redrawContours(); };
+    btn.addEventListener('click', () => {
+      const next = current() === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('ms-theme', next); } catch (e) { /* storage blocked */ }
+      sync();
+    });
+    mq.addEventListener('change', () => { if (!document.documentElement.getAttribute('data-theme')) sync(); });
+    sync();
+  }
+
+  contours(); themeSwitch(); renderStats(); renderSystems(); renderApps(); renderTimeline(); reveal();
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();
