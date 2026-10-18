@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://militarysoft.zyeemzia.com/sitemap.xml

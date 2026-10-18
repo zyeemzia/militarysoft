@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ZyeemZia Military Software</title>
+<meta name="description" content="Unit systems for training, records and simulation, and a field suite of offline Android and web apps for BD MIL operators — designed and built by Zyeem Bin Zia. Copyright © ZyeemZia.">
+<meta name="author" content="ZyeemZia">
+<meta name="theme-color" content="#0b0f0d">
+<link rel="canonical" href="https://militarysoft.zyeemzia.com/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ZyeemZia Military Software">
+<meta property="og:title" content="ZyeemZia Military Software">
+<meta property="og:description" content="Signal Simulator, STMS, SRIMS and RTMS, plus the BD MIL field app suite — offline-first software built for the field and the unit.">
+<meta property="og:url" content="https://militarysoft.zyeemzia.com/">
+<meta property="og:image" content="https://militarysoft.zyeemzia.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://militarysoft.zyeemzia.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css?v=4">
+</head>
+<body>
+<canvas id="contours" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="ZyeemZia Military Software, back to top">
+      <span class="brand-mark">ZZ</span>
+      <span><b>ZYEEMZIA</b><small>Military Software</small></span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#systems-sec">Unit systems</a>
+      <a href="#apps-sec">Field apps</a>
+      <a href="#timeline-sec">History</a>
+      <a href="#about-sec">Approach</a>
+      <a class="cta" href="https://bdmil.zyeemzia.com/" target="_blank" rel="noopener">Downloads</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Portfolio · Bangladesh military software · 2026</div>
+        <h1>Military software, <em>built from the inside.</em></h1>
+        <p class="lead">Four unit systems that run simulation, training and records at the Corps of Signals, and a field suite of seven offline Android and web apps for BD MIL operators — designed, written, tested and shipped by Zyeem Bin Zia.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#systems-sec">See the systems</a>
+          <a class="btn" href="#apps-sec">Field apps</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="reticle"></div><div class="reticle r2"></div><div class="reticle r3"></div>
+        <div class="sweep"></div>
+        <div class="ticks"><span style="left:50%;top:0;transform:translateX(-50%)">000</span><span style="right:0;top:50%;transform:translateY(-50%)">090</span><span style="left:50%;bottom:0;transform:translateX(-50%)">180</span><span style="left:0;top:50%;transform:translateY(-50%)">270</span></div>
+        <span class="blip desk" style="left:34%;top:30%"><span>SIM</span></span>
+        <span class="blip desk" style="left:63%;top:38%"><span>STMS</span></span>
+        <span class="blip desk" style="left:40%;top:62%"><span>SRIMS</span></span>
+        <span class="blip desk" style="left:58%;top:70%"><span>RTMS</span></span>
+        <span class="blip" style="left:20%;top:48%"><span>GR PRO</span></span>
+        <span class="blip" style="left:76%;top:22%"><span>ABBR</span></span>
+        <span class="blip" style="left:82%;top:56%"><span>GADGET</span></span>
+        <span class="blip" style="left:24%;top:78%"><span>MORSE</span></span>
+        <span class="blip" style="left:52%;top:16%"><span>WX</span></span>
+        <span class="blip" style="left:72%;top:84%"><span>OFFICE</span></span>
+      </div>
+    </div>
+    <div class="wrap stats-wrap"><div class="stats" id="stats"></div></div>
+  </section>
+
+  <section class="block" id="systems-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="serial">SER 01</div>
+        <div><h2>Unit systems</h2>
+          <p>Desktop-served web systems that run on one Windows PC on the unit network, work with no internet at all, and update themselves with signed packages. Screens below use demonstration data; live figures are blurred.</p></div>
+      </div>
+      <div id="systems"></div>
+    </div>
+  </section>
+
+  <section class="block" id="apps-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="serial">SER 02</div>
+        <div><h2>BD MIL field apps</h2>
+          <p>Seven ad-free tools for the field and the office, built for Android with one installable web app. Each works offline and is published through the BD MIL distribution node at <a href="https://bdmil.zyeemzia.com/" target="_blank" rel="noopener">bdmil.zyeemzia.com</a>.</p></div>
+      </div>
+      <div class="apps" id="apps"></div>
+    </div>
+  </section>
+
+  <section class="block" id="timeline-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="serial">SER 03</div>
+        <div><h2>A brief history</h2>
+          <p>Eleven programs in one year: field tools first, then the unit systems, then deployment. Dates are shown day-month-year, the way a signal log would write them.</p></div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <section class="block" id="about-sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="serial">SER 04</div>
+        <div><h2>How they are built</h2></div>
+      </div>
+      <div class="about reveal">
+        <div>
+          <p>Every program here was written to answer a specific problem in a specific office: an instructor who needs to know why a radio link failed, a training wing juggling hundreds of lessons a week, a records office waiting minutes for a report, a centre turning result sheets into decisions.</p>
+          <p>They share one discipline. They run on the equipment a unit already has, keep working when the network does not, and are tested before they reach a user. The field apps follow the same rules on a phone.</p>
+          <p>Developer and publisher: <b style="color:var(--ink)">Zyeem Bin Zia</b> · <a href="https://www.zyeemzia.com" target="_blank" rel="noopener">ZyeemZia</a></p>
+        </div>
+        <div class="principles">
+          <div class="principle"><b>Offline first</b><span>No internet, no cloud keys, no outside maps or weather services. Everything the program needs ships in its own folder.</span></div>
+          <div class="principle"><b>Built with the users</b><span>Specified screen by screen against the systems people already used, then refined through rounds of feedback from the office floor.</span></div>
+          <div class="principle"><b>Tested like kit</b><span>More than 1,500 automated tests across the unit systems, plus acceptance checklists before every deployment.</span></div>
+          <div class="principle"><b>One folder, signed updates</b><span>Single-folder installs, automatic verified backups, and updates signed so only genuine builds can be applied.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Copyright © ZyeemZia</span>
+    <span><a href="https://bdmil.zyeemzia.com/" target="_blank" rel="noopener">BD MIL downloads</a> · <a href="https://www.zyeemzia.com" target="_blank" rel="noopener">zyeemzia.com</a> · <a href="https://policy.zyeemzia.com" target="_blank" rel="noopener">Policy</a></span>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden></div>
+
+<script src="data-apps.js?v=2"></script>
+<script src="data-systems.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
