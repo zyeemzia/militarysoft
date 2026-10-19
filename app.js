@@ -33,6 +33,8 @@
   const capIcon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${CAP[n] || CAP.check}</svg>`;
   const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
   const img = (folder, name) => `img/${folder}/${name}.webp`;
+  const mono = n => (n.replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/).length > 1 ? n.replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('') : n.replace(/[^A-Za-z0-9]/g, '').slice(0, 2)).toUpperCase();
+  const toolkit = (tools, compact) => !tools || !tools.length ? '' : `<div class="toolkit${compact ? ' compact' : ''}"><small>Built with</small><div class="tk">${tools.map(t => `<span class="tool" title="${esc(t[0])} — ${esc(t[1])}"><i aria-hidden="true">${esc(mono(t[0]))}</i><b>${esc(t[0])}</b>${compact ? '' : `<em>${esc(t[1])}</em>`}</span>`).join('')}</div></div>`;
   const cover = a => Math.max(0, a.shots.findIndex(x => !/launch/.test(x[0])));
 
   /* ---------- contour background (generated, so it costs no image weight) ---------- */
@@ -106,6 +108,7 @@
           <p class="purpose">${esc(s.summary)}</p>
           <div class="caps">${s.caps.map(c => `<div class="cap"><span class="cap-ic">${capIcon(c[0])}</span><b>${esc(c[1])}</b><span>${esc(c[2])}</span></div>`).join('')}</div>
           ${s.also ? `<div class="also"><small>Also inside</small><div class="tags">${s.also.map(t => `<span>${esc(t)}</span>`).join('')}</div></div>` : ''}
+          ${toolkit(s.tools)}
         </div>
         <div class="sys-media">
           ${s.shots.length ? `
@@ -131,6 +134,7 @@
         <div><h3>${esc(a.name)}</h3><div class="sys-full" style="font-size:13px;margin-top:4px">${esc(a.tagline)}</div></div>
         <p>${esc(a.summary)}</p>
         <div class="tags">${(a.tags || []).map(t => `<span>${esc(t)}</span>`).join('')}</div>
+        ${toolkit(a.tools, true)}
         <div class="meta">
           <span>VERSION <b>${esc(a.ver)}</b></span>${a.shots.length ? `<span>SCREENS <b>${a.shots.length}</b></span>` : ''}${a.web ? '<span>RUNS IN <b>ANY BROWSER</b></span>' : '<span>PLATFORM <b>ANDROID</b></span>'}
         </div>
