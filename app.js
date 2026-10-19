@@ -82,7 +82,6 @@
           <p class="purpose">${esc(s.summary)}</p>
           <ul class="feat">${s.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
           <div class="chips">${s.tech.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
-          <div class="mini-tl">${s.history.map(h => `<div><b>${esc(h[0])}</b>${esc(h[1])}</div>`).join('')}</div>
         </div>
         <div class="sys-media">
           ${s.shots.length ? `
@@ -108,8 +107,7 @@
         <div><h3>${esc(a.name)}</h3><div class="sys-full" style="font-size:13px;margin-top:4px">${esc(a.tagline)}</div></div>
         <p>${esc(a.summary)}</p>
         <div class="meta">
-          <span>FIRST <b>${esc(a.first)}</b></span><span>LATEST <b>${esc(a.latest)}</b></span>
-          ${a.releases ? `<span>RELEASES <b>${a.releases}</b></span>` : ''}${a.shots.length ? `<span>SCREENS <b>${a.shots.length}</b></span>` : ''}
+          <span>VERSION <b>${esc(a.ver)}</b></span>${a.shots.length ? `<span>SCREENS <b>${a.shots.length}</b></span>` : ''}${a.web ? '<span>RUNS IN <b>ANY BROWSER</b></span>' : '<span>PLATFORM <b>ANDROID</b></span>'}
         </div>
         <div style="display:flex;gap:16px;flex-wrap:wrap">
           ${a.shots.length ? `<button class="open" type="button" data-app="${n}">View all ${a.shots.length} screens</button>` : ''}
@@ -129,14 +127,6 @@
         });
       }, 3600);
     }
-  }
-
-  /* ---------- timeline ---------- */
-  function renderTimeline() {
-    const host = $('#timeline'); if (!host || !MS.timeline) return;
-    host.innerHTML = MS.timeline.map(p => `
-      <div class="phase reveal"><div class="phase-label">${esc(p.label)}<small>${esc(p.span)}</small></div>
-        <div class="events">${p.events.map(e => `<div class="ev ${e.desk ? 'desk' : ''}"><time>${esc(e.date)}</time><div><b>${esc(e.title)}</b> — ${esc(e.text)}</div></div>`).join('')}</div></div>`).join('');
   }
 
   /* ---------- stats ---------- */
@@ -196,6 +186,6 @@
     sync();
   }
 
-  contours(); themeSwitch(); renderStats(); renderSystems(); renderApps(); renderTimeline(); reveal();
+  contours(); themeSwitch(); renderStats(); renderSystems(); renderApps(); reveal();
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();
