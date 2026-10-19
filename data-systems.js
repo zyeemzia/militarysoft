@@ -18,14 +18,21 @@ MS.systems = [
     id: 'stms', code: 'STMS', name: 'Training Management', full: 'Signal Training Management System',
     window: 'STC&S Training Management System',
     pitch: 'A whole training year on one screen.',
-    summary: 'Plans, timetables, attendance, question papers, marks and official course reports for a military school, in Bangla and English, from any browser in the building.',
+    summary: 'Everything a military school runs on — plans, timetables, attendance, exams, results, reports, leave, notices and files — in Bangla and English, for every role from commandant to course member, on any PC, tablet or phone in the building.',
     caps: [
-      ['calendar', 'Plan to programme', 'Yearly training plan with approvals, weekly programmes and a smart calendar.'],
-      ['clash', 'Clash-proof planner', 'Instructor, room and course clashes caught before they happen.'],
-      ['check', 'Attendance to results', 'Parade state, question bank, marks entry and locked result sheets.'],
-      ['lang', 'Reports in Bangla & English', 'Official course reports ready to print or open in Word.']
+      ['calendar', 'Plan to programme', 'Yearly training plan with four-stage approval, weekly programmes and a smart calendar.'],
+      ['clash', 'Clash-proof week planner', 'Instructor, room and course clashes caught as you plan; copy last week in one click.'],
+      ['bell', 'Today & Up Next', 'Live dashboard with the class in progress, countdown to the next and 5-minute reminders.'],
+      ['check', 'Attendance & parade state', 'Registers, training parade state and attendance reports with percentages.'],
+      ['report', 'Exams to final results', 'Question bank, Bangla papers with solutions, marks entry, compile sheets and locked results.'],
+      ['chart', 'Results Center', 'Course aggregates and pass rates for staff; every course member sees their own results.'],
+      ['lang', 'Bangla & English', 'The whole interface and every official report in both languages, to print or Word.'],
+      ['shield', 'Approvals & roles', 'Multi-stage approvals with remarks, role-based access and a full audit log.'],
+      ['folder', 'File-sharing drive', 'Share with people, groups or courses; previews, versions and trash.'],
+      ['palette', 'Five themes, four modes', 'Sky Blue, Gold, Silver, Bronze and Tactical Green — light, dark, auto or sunset.']
     ],
-    shots: [['stms-dashboard', 'Today & Up Next dashboard with the class in progress (demo data)'], ['stms-calendar', 'Smart calendar with filters for classes, exams and events'], ['stms-drive', 'File-sharing drive'], ['stms-health', 'System health at a glance: database, backups, updates']]
+    also: ['Leave management', 'Assignments & special tasks', 'Course materials & archive', 'Notice board', 'Course evaluation feedback', 'Custom report formats', 'Ctrl+K search anywhere', 'Excel / CSV export on every list', 'Profiles with photo cropping', 'Gallery', 'Automatic backups', 'Phone, tablet & PC'],
+    shots: [['stms-signin', 'Sign in'], ['stms-dashboard', 'Today & Up Next dashboard with the class in progress'], ['stms-bangla', 'The same dashboard in Bangla'], ['stms-dark-staff', 'Staff dashboard in a dark theme'], ['stms-calendar', 'Smart calendar: classes, exams, events and holidays'], ['stms-yearly-plan', 'Yearly Training Plan with approval status'], ['stms-results-center', 'Results Center: subjects, exams and pass rates'], ['stms-my-results', 'My Results: scores and grades for each course member'], ['stms-report-formats', 'Report formats for programmes, reports, papers and attendance'], ['stms-notifications', 'Notifications for approvals and tasks'], ['stms-drive', 'File-sharing drive'], ['stms-settings', 'Settings: organisation, training week and default theme'], ['stms-backup', 'Backup & restore with automatic daily copies'], ['stms-health', 'System health at a glance']]
   },
   {
     id: 'srims', code: 'SRIMS', name: 'Signal Records', full: 'Signal Records Information Management System',
