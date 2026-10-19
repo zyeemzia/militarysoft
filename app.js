@@ -8,6 +8,26 @@
     arrowL: '<path d="M15 5l-7 7 7 7"/>', arrowR: '<path d="M9 5l7 7-7 7"/>', x: '<path d="M6 6l12 12M18 6L6 18"/>',
     down: '<path d="M12 4v13M6 11l6 6 6-6M5 20h14"/>', ext: '<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'
   };
+  const CAP = {
+    map: '<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/>',
+    wave: '<path d="M2 12c2-5 4-5 6 0s4 5 6 0 4-5 6 0 2 3 2 3"/><path d="M12 3v3M12 18v3"/>',
+    check: '<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+    report: '<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',
+    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3"/>',
+    clash: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><path d="M4 4l3 3M20 4l-3 3"/>',
+    lang: '<path d="M4 5h9M8 3v2M10 5c-1 5-4 8-6 9M6 9c1 2 3 4 6 5"/><path d="m13 21 4-9 4 9M14.5 18h5"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
+    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+    print: '<path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/>',
+    shield: '<path d="M12 3 4 6v6c0 5 4 8 8 9 4-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>',
+    chart: '<path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/>',
+    radar: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12 18 6"/><circle cx="15" cy="9" r="1"/>',
+    brain: '<path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a3 3 0 0 0-3-1zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/>',
+    offline: '<path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/><path d="M3 3l18 18"/>',
+    device: '<rect x="2" y="4" width="14" height="10" rx="1"/><path d="M6 18h6M9 14v4"/><rect x="17" y="8" width="5" height="12" rx="1"/>',
+    compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>'
+  };
+  const capIcon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${CAP[n] || CAP.check}</svg>`;
   const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
   const img = (folder, name) => `img/${folder}/${name}.webp`;
   const cover = a => Math.max(0, a.shots.findIndex(x => !/launch/.test(x[0])));
@@ -79,13 +99,13 @@
           <div class="sys-code">SER ${String(n + 1).padStart(2, '0')} · ${esc(s.code)}</div>
           <h3>${esc(s.name)}</h3>
           <div class="sys-full">${esc(s.full)}</div>
+          <p class="pitch">${esc(s.pitch)}</p>
           <p class="purpose">${esc(s.summary)}</p>
-          <ul class="feat">${s.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>
-          <div class="chips">${s.tech.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>
+          <div class="caps">${s.caps.map(c => `<div class="cap"><span class="cap-ic">${capIcon(c[0])}</span><b>${esc(c[1])}</b><span>${esc(c[2])}</span></div>`).join('')}</div>
         </div>
         <div class="sys-media">
           ${s.shots.length ? `
-          <div class="window"><div class="window-bar"><i></i><i></i><i></i><span>${esc(s.window || s.name)}</span><em class="bar-seal" title="Signed build"><span>SIGNED BUILD</span><img src="img/brand/signature-gold-sm.webp" alt="" loading="lazy"></em></div>
+          <div class="window"><div class="window-bar"><i></i><i></i><i></i><span>${esc(s.window || s.name)}</span><em class="bar-seal" title="ZyeemZia"><img src="img/brand/signature-gold-sm.webp" alt="" loading="lazy"></em></div>
             <button class="window-shot" type="button" data-sys="${n}" data-i="0" aria-label="Enlarge screenshot"><img src="${img('systems', s.shots[0][0])}" alt="${esc(s.shots[0][1])}" loading="lazy"></button></div>
           <div class="caption" id="cap-${n}">${esc(s.shots[0][1])}</div>
           ${s.shots.length > 1 ? `<div class="thumbs" role="group" aria-label="Screenshots">${s.shots.map((sh, i) => `<button type="button" data-thumb="${n}:${i}" aria-pressed="${i === 0}" aria-label="${esc(sh[1])}"><img src="${img('systems', sh[0])}" alt="" loading="lazy"></button>`).join('')}</div>` : ''}`
@@ -106,6 +126,7 @@
           : `<div class="phone" aria-hidden="true"><div class="feature-face"><b>${esc(a.name.replace('BD MIL ', ''))}</b>${(a.face || []).map(f => `<span>${esc(f)}</span>`).join('')}</div></div>`}
         <div><h3>${esc(a.name)}</h3><div class="sys-full" style="font-size:13px;margin-top:4px">${esc(a.tagline)}</div></div>
         <p>${esc(a.summary)}</p>
+        <div class="tags">${(a.tags || []).map(t => `<span>${esc(t)}</span>`).join('')}</div>
         <div class="meta">
           <span>VERSION <b>${esc(a.ver)}</b></span>${a.shots.length ? `<span>SCREENS <b>${a.shots.length}</b></span>` : ''}${a.web ? '<span>RUNS IN <b>ANY BROWSER</b></span>' : '<span>PLATFORM <b>ANDROID</b></span>'}
         </div>
@@ -127,6 +148,12 @@
         });
       }, 3600);
     }
+  }
+
+  /* ---------- capabilities at a glance ---------- */
+  function renderGlance() {
+    const host = $('#glance'); if (!host || !MS.glance) return;
+    host.innerHTML = MS.glance.map(g => `<div class="glance-tile reveal"><span class="cap-ic">${capIcon(g[0])}</span><b>${esc(g[1])}</b><span>${esc(g[2])}</span></div>`).join('');
   }
 
   /* ---------- stats ---------- */
@@ -186,6 +213,6 @@
     sync();
   }
 
-  contours(); themeSwitch(); renderStats(); renderSystems(); renderApps(); reveal();
+  contours(); themeSwitch(); renderStats(); renderSystems(); renderApps(); renderGlance(); reveal();
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

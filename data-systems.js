@@ -1,66 +1,67 @@
-/* Unit systems and headline figures. Copyright © ZyeemZia */
+/* Unit systems, capabilities and headline figures. Copyright © ZyeemZia */
 window.MS = window.MS || {};
 MS.systems = [
   {
     id: 'simulator', code: 'STSS', name: 'Signal Simulator', full: 'Signal Transmission Simulator System',
     window: 'Signal Transmission Simulator — Training Workspace',
-    summary: 'A physics-based radio and line-communication training simulator for the Signal Training Centre & School. Instructors set a scenario on a map — district, date and time, natural effects, allotted equipment — and students lay out their own radios, relay sets, cables and network devices, then press RUN. Every link is graded with a dB margin and a plain-language reason, so a failed link teaches something.',
-    features: [
-      'Wireless engine: path loss, diffraction, antenna gain, receiver sensitivity and full link budget',
-      'Moving ionosphere with MUF / LUF / OWF, skip distance and a 24-hour HF frequency prediction',
-      'Wired engine: RJ45 pin order, cable pairs, ports, IP/DHCP, SIP and fibre/TV chains',
-      'Each device shown Connected, Configuration error or Disconnected — with the reason',
-      'Scenario wizard and a practice-versus-standard comparison report (Excel, CSV, PDF)',
-      'Runs fully offline on one PC with offline map tiles and signed updates'
+    pitch: 'Plan the net. Press RUN. See why every link lives or dies.',
+    summary: 'A map-based radio and line-communication trainer. Instructors set the scenario; students lay out radios, relay sets, cables and network kit, run it, and get every link graded with the reason.',
+    caps: [
+      ['map', 'Exercises on a real map', 'Radios, relays, cables and network devices laid out on offline map tiles.'],
+      ['wave', 'HF to microwave physics', 'Terrain, weather, path loss and a moving ionosphere with MUF / LUF.'],
+      ['check', 'Every link graded', 'Excellent to none, with the dB margin and a plain-language reason.'],
+      ['report', 'Practice vs standard', 'Side-by-side comparison reports in Excel, CSV and PDF.']
     ],
-    tech: ['Python', 'Flask', 'SQLite', 'Leaflet', 'Offline tiles', 'Signed updates', 'Windows .exe'],
     shots: [['sim-hf-map', 'HF wireless path on the training map, with map layers'], ['sim-hf-config', 'HF Config wizard: antenna, ionosphere and Max Usable Frequency'], ['sim-cable-config', 'Cable configuration: ports, laying type, uplink and downlink']]
   },
   {
     id: 'stms', code: 'STMS', name: 'Training Management', full: 'Signal Training Management System',
     window: 'STC&S Training Management System',
-    summary: 'Runs the whole training year of a military school in one offline web system: the yearly plan, running courses, weekly programmes, attendance and parade state, question banks, marks, result sheets and official course reports in the unit’s own Bangla and English formats. On top of the daily administration it adds a smart calendar, timetable clash detection, file sharing and multi-stage approvals.',
-    features: [
-      'Yearly training plan with four-stage approval',
-      'Week planner that catches instructor, room and course clashes before they happen',
-      'Attendance register, training parade state and percentage reports',
-      'Question bank, papers, marks entry and result sheets that lock once approved',
-      'Smart calendar and a “Today & Up Next” dashboard with live class countdown',
-      'File-sharing drive with per-person, group and course rights'
+    pitch: 'A whole training year on one screen.',
+    summary: 'Plans, timetables, attendance, question papers, marks and official course reports for a military school, in Bangla and English, from any browser in the building.',
+    caps: [
+      ['calendar', 'Plan to programme', 'Yearly training plan with approvals, weekly programmes and a smart calendar.'],
+      ['clash', 'Clash-proof planner', 'Instructor, room and course clashes caught before they happen.'],
+      ['check', 'Attendance to results', 'Parade state, question bank, marks entry and locked result sheets.'],
+      ['lang', 'Reports in Bangla & English', 'Official course reports ready to print or open in Word.']
     ],
-    tech: ['Python', 'Flask', 'SQLite (WAL)', 'Bangla / English', 'Signed updates', 'Windows .exe'],
-    shots: [['stms-dashboard', 'Administrator dashboard: class in progress, next classes and alerts (demo data)'], ['stms-calendar', 'Smart calendar with filters for classes, exams and events'], ['stms-drive', 'File-sharing drive'], ['stms-health', 'System health check: version, database integrity, backups']]
+    shots: [['stms-dashboard', 'Today & Up Next dashboard with the class in progress (demo data)'], ['stms-calendar', 'Smart calendar with filters for classes, exams and events'], ['stms-drive', 'File-sharing drive'], ['stms-health', 'System health at a glance: database, backups, updates']]
   },
   {
     id: 'srims', code: 'SRIMS', name: 'Signal Records', full: 'Signal Records Information Management System',
     window: 'SRIMS — Signal Records Information Management System',
-    summary: 'The service-record system of the Corps of Signals: tens of thousands of records covering postings, promotions, missions, qualifications, allowances, retirement and pension, with more than 60 printable reports. Re-engineered with the records office: faults fixed, new reports added, slow reports made dramatically faster, and the whole system packed into one self-contained folder that backs itself up.',
-    features: [
-      'Setup, Data Entry and Reports across 165+ screens',
-      'Report speed-ups of up to 34× — one search went from 512 s to 15 s',
-      'New reports, including strength as at any past date',
-      'Automatic verified, compressed backups every four hours, with one-click restore',
-      'Server-enforced screen rights for every user',
-      'One portable folder: web server, database and runtime bundled, nothing to install'
+    pitch: 'Every service record, in seconds.',
+    summary: 'The complete service record of the Corps of Signals — postings, promotions, missions, qualifications, retirement and pension — with fast search and more than 60 printable reports.',
+    caps: [
+      ['search', 'The whole record', 'Postings, promotions, missions and pension across 25+ record tabs.'],
+      ['bolt', 'Up to 34× faster', 'Reports that took minutes now arrive in seconds.'],
+      ['print', '60+ printable reports', 'Strength, postings, promotions and more, exported to Excel or Word.'],
+      ['shield', 'Safe by default', 'Verified backups every four hours and per-user screen rights.']
     ],
-    tech: ['PHP / Laravel', 'MariaDB', 'Python', 'Flask', 'Portable bundle'],
-    shots: [['srims-signin', 'Sign-in screen'], ['srims-home', 'Home screen with Setup, Data Entry and Reports (figures blurred)'], ['srims-backup', 'Backup page: automatic four-hourly verified backups (figures blurred)']]
+    shots: [['srims-signin', 'Sign-in screen'], ['srims-home', 'Home screen with Setup, Data Entry and Reports (figures blurred)'], ['srims-backup', 'Automatic four-hourly verified backups (figures blurred)']]
   },
   {
     id: 'rtms', code: 'RTMS', name: 'Recruit Training', full: 'Recruit Training Management System',
     window: 'RTMS — Analytical Data Hub',
-    summary: 'Turns recruit training results into decisions. RTMS reads a training centre’s result workbooks — or its own results database — and produces live dashboards, company and platoon rankings, early-warning risk lists, heatmaps, distributions and ready-to-print Word and Excel reports. It is multi-institution: each centre sees only its own recruits, with optional comparison across centres.',
-    features: [
-      'Overview dashboard with batch health, pass rates and subject grade cards',
-      'Smart profiles with batch, company and platoon rank for every recruit',
-      'Early-warning risk radar, performance heatmap and progression trends',
-      'Advanced Analysis Lab: command brief, what-if re-weighting, correlation and anomaly detection',
-      'Smart Query in Bangla or English across any recruit detail',
-      'Export Studio, Word result report builder and print-ready PDF'
+    pitch: 'Turn result sheets into decisions.',
+    summary: 'Live dashboards, rankings, early warnings and ready-to-print reports for every recruit in a batch — for one training centre or several, each seeing only its own.',
+    caps: [
+      ['chart', 'Live dashboards', 'Batch health, pass rates, grade cards and company and platoon rankings.'],
+      ['radar', 'Early-warning radar', 'Recruits at risk flagged while there is still time to help.'],
+      ['brain', 'Analysis lab', 'Command brief, what-if re-weighting, correlations and anomaly detection.'],
+      ['search', 'Smart query', 'Find any recruit by any detail, in Bangla or English.']
     ],
-    tech: ['Python', 'Flask', 'pandas', 'NumPy', 'openpyxl', 'SQLite', 'Offline charts'],
-    shots: [['rtms-heatmap', 'Performance heatmap: platoon by subject'], ['rtms-distribution', 'Statistical normal distribution of batch scores'], ['rtms-lab', 'Advanced Analysis Lab']]
+    shots: [['rtms-heatmap', 'Performance heatmap: platoon by subject'], ['rtms-distribution', 'Normal distribution of batch scores'], ['rtms-lab', 'Advanced Analysis Lab']]
   }
 ];
 
-MS.stats = [['10', 'Programs in service'], ['1,500+', 'Automated tests'], ['5,000+', 'BD MIL installs (est.)'], ['2,651', 'Defence terms in the dictionary'], ['34×', 'Fastest report speed-up']];
+MS.stats = [['10', 'Military programs'], ['5,000+', 'BD MIL installs (est.)'], ['2,651', 'Defence terms on hand'], ['34×', 'Faster records reports'], ['0', 'Internet needed']];
+
+MS.glance = [
+  ['offline', 'Works with no network', 'Every system and app keeps working in the field, the office or a dead zone.'],
+  ['lang', 'Bangla and English', 'Screens, reports and search in both languages, including Bijoy text.'],
+  ['device', 'Runs on what you have', 'One PC for the whole unit, any browser on the network, any Android phone.'],
+  ['shield', 'Private and ad-free', 'Data stays on the unit PC or the phone. No cloud accounts, no ads.'],
+  ['bolt', 'Answers in seconds', 'Smart search, instant conversions and reports that arrive while you wait.'],
+  ['compass', 'Field kit in a pocket', 'GR conversion, compass, Morse, weather and report formats on one phone.']
+];

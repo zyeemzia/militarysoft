@@ -297,3 +297,27 @@ footer a:hover { color: var(--sand); }
 .lb-stage { grid-template-rows: minmax(0, 1fr); height: 100%; min-height: 0; }
 .lb-fig { height: 100%; min-height: 0; overflow: hidden; }
 .lb-stage img { height: auto; max-height: 100%; width: auto; }
+
+/* ---------- publicity layout: pitch, capability tiles, tags, glance ---------- */
+.pitch { font: 700 clamp(20px, 2vw, 25px)/1.25 var(--f-display); color: var(--ink); letter-spacing: .01em; margin: 14px 0 0; border-left: 3px solid var(--sand); padding-left: 12px; }
+.sys-text p.purpose { margin: 12px 0 18px; color: var(--muted); }
+.caps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.cap { display: grid; grid-template-columns: 38px minmax(0, 1fr); column-gap: 12px; row-gap: 2px; align-items: start; padding: 14px; border: 1px solid var(--line); border-radius: 6px; background: color-mix(in srgb, var(--panel) 85%, transparent); transition: border-color .2s, transform .2s; }
+.cap:hover { border-color: var(--sand); transform: translateY(-2px); }
+.cap .cap-ic { grid-row: span 2; }
+.cap b { font: 700 15px/1.25 var(--f-display); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+.cap span:last-child { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+.cap-ic { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; color: var(--sand); border: 1.5px solid color-mix(in srgb, var(--sand) 55%, transparent); background: color-mix(in srgb, var(--sand) 10%, transparent); }
+.cap-ic svg { width: 19px; height: 19px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font: 600 11.5px var(--f-mono); letter-spacing: .03em; color: var(--sand-2); border: 1px solid color-mix(in srgb, var(--sand) 45%, transparent); background: color-mix(in srgb, var(--sand) 9%, transparent); padding: 3px 9px; border-radius: 999px; }
+.glance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.glance-tile { display: grid; gap: 8px; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: color-mix(in srgb, var(--panel) 88%, transparent); position: relative; overflow: hidden; }
+.glance-tile::after { content: ""; position: absolute; right: -30px; top: -30px; width: 90px; height: 90px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--sand) 25%, transparent); }
+.glance-tile b { font: 700 19px/1.2 var(--f-display); letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+.glance-tile span:last-child { color: var(--muted); font-size: 14.5px; }
+.sig-end { margin: 46px auto 0; justify-items: center; text-align: center; }
+.sig-end b { text-align: center; }
+.sig-end .btn { margin-top: 14px; }
+@media (max-width: 960px) { .glance { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .caps, .glance { grid-template-columns: 1fr; } }
