@@ -10,6 +10,7 @@
   };
   const icon = n => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON[n]}</svg>`;
   const img = (folder, name) => `img/${folder}/${name}.webp`;
+  const cover = a => Math.max(0, a.shots.findIndex(x => !/launch/.test(x[0])));
 
   /* ---------- contour background (generated, so it costs no image weight) ---------- */
   function contours() {
@@ -63,7 +64,9 @@
         <div class="lb-fig"><img src="${esc(it.src)}" alt="${esc(it.cap)}"></div>
         <button class="nav-b" type="button" data-lb="1" aria-label="Next" ${LB.items.length < 2 ? 'hidden' : ''}>${icon('arrowR')}</button>
       </div>
-      <div class="lb-cap">${esc(it.cap)}</div>`;
+      <div class="lb-cap"><b>${String(LB.i + 1).padStart(2, '0')}</b> ${esc(it.cap)}</div>
+      ${LB.items.length > 1 ? `<div class="lb-strip" role="group" aria-label="All screens in order">${LB.items.map((x, k) => `<button type="button" data-lbgo="${k}" aria-label="Screen ${k + 1}: ${esc(x.cap)}" aria-current="${k === LB.i}"><img src="${esc(x.src)}" alt=""><span>${k + 1}</span></button>`).join('')}</div>` : ''}`;
+    const cur = $('#lb [aria-current="true"]'); if (cur) cur.scrollIntoView({ block: 'nearest', inline: 'center' });
   }
   function closeLB() { $('#lb').hidden = true; $('#lb').innerHTML = ''; document.body.style.overflow = ''; LB = null; }
 
@@ -100,17 +103,17 @@
         ${a.web ? '<span class="badge-web">WEB APP</span>' : ''}
         <div class="app-top"><span class="app-ser">APP ${String(n + 1).padStart(2, '0')}</span><span class="app-ver">${esc(a.ver)}</span></div>
         ${a.shots.length
-          ? `<button class="phone" type="button" data-app="${n}" aria-label="Open ${esc(a.name)} screenshots"><img src="${img('apps', a.shots[0][0])}" alt="${esc(a.shots[0][1])}" loading="lazy" data-cycle="${n}"></button>`
+          ? `<button class="phone" type="button" data-app="${n}" aria-label="Open ${esc(a.name)} screenshots"><img src="${img('apps', a.shots[cover(a)][0])}" alt="${esc(a.shots[cover(a)][1])}" loading="lazy" data-cycle="${n}"></button>`
           : `<div class="phone" aria-hidden="true"><div class="feature-face"><b>${esc(a.name.replace('BD MIL ', ''))}</b>${(a.face || []).map(f => `<span>${esc(f)}</span>`).join('')}</div></div>`}
         <div><h3>${esc(a.name)}</h3><div class="sys-full" style="font-size:13px;margin-top:4px">${esc(a.tagline)}</div></div>
         <p>${esc(a.summary)}</p>
         <div class="meta">
           <span>FIRST <b>${esc(a.first)}</b></span><span>LATEST <b>${esc(a.latest)}</b></span>
-          ${a.releases ? `<span>RELEASES <b>${a.releases}</b></span>` : ''}${a.installs ? `<span>PLAY <b>${esc(a.installs)}</b></span>` : ''}
+          ${a.releases ? `<span>RELEASES <b>${a.releases}</b></span>` : ''}${a.shots.length ? `<span>SCREENS <b>${a.shots.length}</b></span>` : ''}
         </div>
         <div style="display:flex;gap:16px;flex-wrap:wrap">
-          ${a.shots.length ? `<button class="open" type="button" data-app="${n}">View screens</button>` : ''}
-          ${a.link ? `<a class="open" href="${esc(a.link)}" target="_blank" rel="noopener">Open web app</a>` : a.play ? `<a class="open" href="${esc(a.play)}" target="_blank" rel="noopener">Google Play</a>` : `<a class="open" href="${esc(MS.links.downloads)}" target="_blank" rel="noopener">Download</a>`}
+          ${a.shots.length ? `<button class="open" type="button" data-app="${n}">View all ${a.shots.length} screens</button>` : ''}
+          ${a.link ? `<a class="open" href="${esc(a.link)}" target="_blank" rel="noopener">Open web app</a>` : `<a class="open" href="${esc(MS.links.downloads)}" target="_blank" rel="noopener">Download</a>`}
         </div>
       </article>`).join('');
     // gently cycle phone screens
@@ -121,7 +124,7 @@
         document.querySelectorAll('[data-cycle]').forEach(el => {
           const a = MS.apps[+el.dataset.cycle]; if (a.shots.length < 2) return;
           const r = el.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
-          const k = (tick + +el.dataset.cycle) % a.shots.length;
+          const k = (cover(a) + tick) % a.shots.length;
           el.style.opacity = 0; setTimeout(() => { el.src = img('apps', a.shots[k][0]); el.alt = a.shots[k][1]; el.style.opacity = 1; }, 450);
         });
       }, 3600);
@@ -158,6 +161,8 @@
     const ap = t.closest('[data-app]');
     if (ap) { const a = MS.apps[+ap.dataset.app]; openLB(a.name, a.ver, a.shots.map(x => ({ src: img('apps', x[0]), cap: x[1] })), 0); return; }
     if (t.closest('#lb .x') || t.id === 'lb') { closeLB(); return; }
+    const go = t.closest('[data-lbgo]');
+    if (go && LB) { LB.i = +go.dataset.lbgo; renderLB(); return; }
     const nb = t.closest('[data-lb]');
     if (nb && LB) { LB.i = (LB.i + +nb.dataset.lb + LB.items.length) % LB.items.length; renderLB(); }
   });

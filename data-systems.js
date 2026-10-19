@@ -67,11 +67,10 @@ MS.systems = [
   }
 ];
 
-MS.stats = [['11', 'Programs in service'], ['1,500+', 'Automated tests'], ['29', 'App releases in 2026'], ['610+', 'Google Play installs'], ['34×', 'Fastest report speed-up']];
+MS.stats = [['10', 'Programs in service'], ['1,500+', 'Automated tests'], ['24', 'BD MIL app releases in 2026'], ['5,000+', 'BD MIL installs (est.)'], ['34×', 'Fastest report speed-up']];
 
 MS.timeline = [
-  { label: 'PHASE 1', span: 'MAY – AUG 26 · Field tools', events: [
-    { date: '23 MAY 26', title: 'GR Converter Pro', text: 'first release of the grid-reference engine; now 500+ installs' },
+  { label: 'PHASE 1', span: 'JUN – AUG 26 · Field tools', events: [
     { date: '30 JUN 26', title: 'BD MIL ABBR', text: 'the defence terminology dictionary goes offline on Android' },
     { date: '05 JUL 26', title: 'BD MIL WX', text: 'field weather and terrain; seven releases in three weeks' },
     { date: 'JUL 26', title: 'RTMS', text: 'recruit training analytics project begins', desk: true },
