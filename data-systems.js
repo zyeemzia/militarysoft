@@ -54,7 +54,7 @@ MS.systems = [
   }
 ];
 
-MS.stats = [['10', 'Military programs'], ['5,000+', 'BD MIL installs (est.)'], ['2,651', 'Defence terms on hand'], ['34×', 'Faster records reports'], ['0', 'Internet needed']];
+MS.stats = [['11', 'Military programs'], ['5,000+', 'BD MIL installs (est.)'], ['2,651', 'Defence terms on hand'], ['34×', 'Faster records reports'], ['0', 'Internet needed']];
 
 MS.glance = [
   ['offline', 'Works with no network', 'Every system and app keeps working in the field, the office or a dead zone.'],

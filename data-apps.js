@@ -3,6 +3,14 @@
 window.MS = window.MS || {};
 MS.apps = [
   {
+    id: 'grconverter', name: 'BD MIL GR Converter Pro', short: 'Grid & navigation engine', ver: 'v1.3.2',
+    tagline: 'Grid references on BD map sheets, in one tap.',
+    summary: 'Convert Lat/Long to 6-figure GRs on Bangladesh map sheets and back, then track, follow routes, drop waypoints and send a tactical report — on satellite imagery that keeps working offline.',
+    tags: ['Lat/Long ⇄ GR', 'BD map sheets', 'Live tracker', 'Route follow', 'Waypoints & range', 'Tactical report', 'Offline maps'],
+    tools: [['Flutter', 'Cross-platform UI'], ['flutter_map', 'Offline satellite maps'], ['ObjectBox', 'Crash-safe tracking'], ['Geolocator', 'GPS'], ['Sensors', 'Compass'], ['Text-to-speech', 'Route guidance'], ['Share sheet', 'Routes, backup & restore']],
+    shots: [['grcp-01-launch', 'Launch screen'], ['grcp-02-latlong-gr', 'Lat/Long to GR with the BD map sheet, pinned on the map'], ['grcp-03-gr-latlong', 'GR and map sheet back to Lat/Long'], ['grcp-04-tracker', 'Tracker: distance, live pace, speed and time'], ['grcp-05-follow', 'Guided route follow with checkpoint alerts'], ['grcp-06-waypoints', 'Waypoints: save pins, vectors and live target range'], ['grcp-07-report', 'Tactical report with GPS, save and send'], ['grcp-08-full-map', 'Full-screen satellite map with sun and moon times']]
+  },
+  {
     id: 'abbr', name: 'BD MIL ABBR', short: 'Defence dictionary', ver: 'v1.2.0',
     tagline: 'The defence terminology dictionary in your pocket.',
     summary: 'Every defence abbreviation, offline, in one tap — with tactical symbols, flashcards and a text tool that expands a whole paragraph.',
