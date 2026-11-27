@@ -1,5 +1,7 @@
 /* Layout concept: a field-operations briefing file — night map ground with contour lines, serial-numbered
    sections, data set in mono like a signal log, gold-leaf accent taken from the BD MIL app family; the developer's signature is plated in gold. Night ops (dark) and Day ops (light) themes. */
+/* Form controls use the page font; browsers otherwise fall back to Arial. */
+button, input, select, textarea { font-family: inherit; }
 :root {
   --bg: #0b0f0d; --bg-2: #101613; --panel: #131a16; --panel-2: #18211c; --line: #24302a; --line-2: #33433a;
   --ink: #e8ecdf; --muted: #9aa79d; --dim: #6b7a70; --sand: #d9b35b; --sand-2: #f0d48d; --olive: #8fae7e; --red: #d8664f;
